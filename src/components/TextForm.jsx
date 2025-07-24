@@ -4,9 +4,12 @@ function TextForm(props){
 
     const handleUpperCase = ()=>{
         setText(text.toUpperCase());
+        props.showAlert("Converted to uppercase!", "success")
     }
     const handleLowerCase =()=>{
         setText(text.toLowerCase());
+        props.showAlert("Converted to uppercase!", "success")
+
     }
 
     const handleChange = (event)=>{
@@ -23,21 +26,28 @@ function TextForm(props){
         speech.rate = 1; // Adjust speed (0.5 - 2)
         speech.pitch = 1; // Adjust pitch (0 - 2)
         window.speechSynthesis.speak(speech);
+        props.showAlert("Speak Mode Activated", "success")
+
     };
 
     function handleClear(){
         setText('');
+                props.showAlert("Text cleared", "success")
     }
 
     const handleCopy = () =>{
         let text = document.getElementById("typeBox");
         text.select();
         navigator.clipboard.writeText(text.value);
+        props.showAlert("copied to clipboard!", "success")
+
     }
 
     const handleExtraSpaces = () =>{
         let newText = text.split(/[ ]+/);
         setText(newText.join(" "));
+        props.showAlert("Extra Spaces Removed!", "success")
+
     }
 
 
